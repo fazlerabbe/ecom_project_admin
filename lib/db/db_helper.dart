@@ -51,7 +51,7 @@ class DbHelper {
     purchaseModel.purchaseId = purDoc.id;
     wb.set(purDoc, purchaseModel.toMap());
     final proDoc =
-        _db.collection(collectionProduct).doc(productModel.productId);
+    _db.collection(collectionProduct).doc(productModel.productId);
     wb.update(proDoc, {
       productFieldStock: (productModel.stock + purchaseModel.purchaseQuantity)
     });
@@ -101,8 +101,16 @@ class DbHelper {
     return snapshot.exists;
   }
 
+
+
+
+
+
+
   static Stream<QuerySnapshot<Map<String, dynamic>>> getAllUsers() =>
       _db.collection(collectionUser).snapshots();
+
+
 
   static Stream<QuerySnapshot<Map<String, dynamic>>> getAllOrders() =>
       _db.collection(collectionOrder).snapshots();
@@ -114,6 +122,14 @@ class DbHelper {
           .where('$productFieldCategory.$categoryFieldId',
               isEqualTo: categoryModel.categoryId)
           .snapshots();
+
+
+
+
+
+
+
+
 
   static Future<void> updateOrderStatus(String orderId, String status) {
     return _db

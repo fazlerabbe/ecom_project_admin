@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:provider/provider.dart';
@@ -7,6 +5,7 @@ import 'package:provider/provider.dart';
 import '../models/order_constant_model.dart';
 import '../providers/order_provider.dart';
 import '../utils/helper_functions.dart';
+
 class SettingsPage extends StatefulWidget {
   static const String routeName = '/settings';
   const SettingsPage({Key? key}) : super(key: key);
@@ -25,10 +24,11 @@ class _SettingsPageState extends State<SettingsPage> {
   @override
   void didChangeDependencies() {
     orderProvider = Provider.of<OrderProvider>(context);
-    _discountController.text = orderProvider.orderConstantModel.discount.toString();
+    _discountController.text =
+        orderProvider.orderConstantModel.discount.toString();
     _vatController.text = orderProvider.orderConstantModel.vat.toString();
-    _deliveryChargeController.text = orderProvider.orderConstantModel
-        .deliveryCharge.toString();
+    _deliveryChargeController.text =
+        orderProvider.orderConstantModel.deliveryCharge.toString();
     super.didChangeDependencies();
   }
 
@@ -124,19 +124,17 @@ class _SettingsPageState extends State<SettingsPage> {
   }
 
   void _saveInfo() {
-    if(_formKey.currentState!.validate()) {
+    if (_formKey.currentState!.validate()) {
       EasyLoading.show(status: 'Updating..');
       final model = OrderConstantModel(
         discount: num.parse(_discountController.text),
         vat: num.parse(_vatController.text),
         deliveryCharge: num.parse(_deliveryChargeController.text),
       );
-      orderProvider.updateOrderConstants(model)
-          .then((value) {
-            EasyLoading.dismiss();
-            showMsg(context, 'Updated');
-      })
-          .catchError((error) {
+      orderProvider.updateOrderConstants(model).then((value) {
+        EasyLoading.dismiss();
+        showMsg(context, 'Updated');
+      }).catchError((error) {
         EasyLoading.dismiss();
         showMsg(context, 'Failed to update');
       });

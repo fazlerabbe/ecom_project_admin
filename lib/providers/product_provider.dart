@@ -43,22 +43,19 @@ class ProductProvider extends ChangeNotifier {
 
   getAllPurchase() {
     DbHelper.getAllPurchases().listen((snapshot) {
-      _purchaseList = List.generate(snapshot.docs.length,
-          (index) => PurchaseModel.fromMap(snapshot.docs[index].data()));
-
+      _purchaseList = List.generate(snapshot.docs.length, (index) =>
+          PurchaseModel.fromMap(snapshot.docs[index].data()));
       notifyListeners();
     });
   }
 
   List<PurchaseModel> getPurchaseByProductId(String productId) {
     List<PurchaseModel> list = [];
-    list =
-        _purchaseList.where((model) => model.productId == productId).toList();
+    list = _purchaseList.where((model) => model.productId == productId).toList();
     return list;
   }
 
-  Future<void> repurchase(
-      PurchaseModel purchaseModel, ProductModel productModel) {
+  Future<void> repurchase(PurchaseModel purchaseModel, ProductModel productModel) {
     return DbHelper.repurchase(purchaseModel, productModel);
   }
 
@@ -75,9 +72,8 @@ class ProductProvider extends ChangeNotifier {
     return productList.firstWhere((element) => element.productId == productId);
   }
 
-  Future<void> updateProductField(
-      String productId, String field, dynamic value) {
-    return DbHelper.updateProductField(productId, {field: value});
+  Future<void> updateProductField(String productId, String field, dynamic value) {
+    return DbHelper.updateProductField(productId, {field : value});
   }
 
   Future<void> deleteImage(String downloadUrl) {

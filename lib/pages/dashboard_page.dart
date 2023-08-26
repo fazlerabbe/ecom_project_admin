@@ -58,8 +58,7 @@ class _DashboardPageState extends State<DashboardPage> {
         itemBuilder: (context, index) {
           final model = dashboardModelList[index];
           if (model.title == 'Notification') {
-            final count =
-                context.read<NotificationProvider>().totalUnreadMessage;
+            final count = context.read<NotificationProvider>().totalUnreadMessage;
             return DashboardItemView(
               model: dashboardModelList[index],
               badge: BadgeView(

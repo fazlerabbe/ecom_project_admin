@@ -1,4 +1,3 @@
-import 'package:ecom_project/pages/product_details_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:provider/provider.dart';
@@ -6,6 +5,7 @@ import 'package:provider/provider.dart';
 import '../models/notification_model.dart';
 import '../providers/notification_provider.dart';
 import '../utils/constants.dart';
+import 'product_details_page.dart';
 
 class NotificationPage extends StatelessWidget {
   static const String routeName = '/notifications';
